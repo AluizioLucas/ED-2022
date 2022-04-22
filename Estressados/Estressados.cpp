@@ -308,7 +308,7 @@ vector<int> inverter_com_copia(const vector<int>& v){
     cout << endl;
     return vetNovo;
 }
-/*
+
 void inverter_inplace(vector<int> v){
      int aux = 0;
      for(int i = v.size()-1;i>=v.size()/2;i--){
@@ -321,7 +321,7 @@ void inverter_inplace(vector<int> v){
     }
     cout << endl;
 }
-*/
+
 
 int sortear(const vector<int>& v){
     int size = v.size() - 1;
@@ -329,7 +329,7 @@ int sortear(const vector<int>& v){
     return v[rand() % size];
 }
 
-/*
+
 void ordenar(vector<int> v){
     int indice_menor = 0;
     for (int i = 0; i < v.size(); i++){
@@ -348,7 +348,7 @@ void ordenar(vector<int> v){
     }
     cout << endl;
 }
-*/
+
 vector<int> exclusivos(const vector<int>& v){
     vector<int> vetNovo;
     vetNovo.push_back(v[0]);
@@ -370,7 +370,7 @@ vector<int> exclusivos(const vector<int>& v){
     cout << endl;
     return v;
 }
-/*
+
 vector<int> diferentes(const vector<int>& v){
     vector<int> n;
     int count = 0;
@@ -386,7 +386,7 @@ vector<int> diferentes(const vector<int>& v){
             n[i] = v[i];
         }
     }
-}*/
+}
 
 
 int main()
@@ -428,7 +428,7 @@ int main()
     homens_sao_mais_estressados_que_mulheres({-1,-2,-3,5,6,7});
     homens_sao_mais_estressados_que_mulheres({-7,-6,-5,5,6,7});
 
-    //BLOCO 2
+    //BLOCO 2;
 
     clonar({1,2,3,4});
 
@@ -442,11 +442,11 @@ int main()
 
     inverter_com_copia({1,2,3,-5,-6,-7});
 
-    //inverter_inplace({1,2,3,-5,-6,-7});
+    inverter_inplace({1,2,3,-5,-6,-7});
 
     sortear({1,2,3,-5,-6,-7});
 
-   // ordenar({1,5,3,4,6,7,2});
+    ordenar({1,5,3,4,6,7,2});
 
     exclusivos({1,5,3,4,6,7,2});
 }
