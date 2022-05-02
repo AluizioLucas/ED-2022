@@ -41,6 +41,7 @@ struct Vector{
     }
 
     void reserve(int capacity){
+        
         int * _new_data = new int[capacity];
         int qtd = min(_size, capacity);
         for (int i = 0; i < qtd; i++){

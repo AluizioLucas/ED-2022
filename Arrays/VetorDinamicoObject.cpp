@@ -10,16 +10,15 @@ struct Vector{
     int * _data {nullptr}; //inicializar pra não conter lixo
 
     Vector(int capacity){
+
+        //inicialize this->capacity com capacity
+        //inicialize this->_size com _size
+        //crie memória dinamicamente para this->data com tamanho capacity
+
         _capacity = capacity;
         _size = capacity;
-        new int[capacity];
-    }
+        _data[capacity];
 
-    void pop_back(){
-        if(_size == 0){
-            return;
-        }
-        _size -= 1;
     }
 
     int& at(int indice){
@@ -29,21 +28,24 @@ struct Vector{
         return _data[indice];
     }
 
-    void reserve(int capacity){
-        int * _new_data = new int[capacity];
-        int qtd = min(_size, capacity);
-        for (int i = 0; i < qtd; i++){
-            _new_data[i] = _data[i];
-        }
-        _size = qtd;               //qtd de elementos do vetor
-        _capacity = capacity;
-        
-        delete [] _data;           //devolve o bloco antigo
-        _data = _new_data;         //atualiza a referencia
-    }
-
     //como seu vector tem atritutos do tipo ponteiros, você precisa criar um
     //construtor de cópia e um operador de atribuição ou terá erros do tipo double-free
+
+    int getCapacity(){
+        return _capacity;
+    }
+
+    int get_Size(){
+        return _size;
+    }
+
+    int setCapacity(int capacity){
+        this->_capacity = capacity;
+    }
+
+    int set_Size(int _size){
+        this->_size = _size;
+    }
 
     //O operador de atribuição será invocado quando você fizer um Vector receber outro
     //Ex:
@@ -51,12 +53,29 @@ struct Vector{
     //vec = Vector(6);
     //nesse ponto, os atributos de this já foram inicializados, 
     //mas você precisa alterá-los para copiar os valores de other
-    void operator = (const Vector& other){
+   void operator = (const Vector& other){
+
         //inicialize this->capacity com other.capacity
-        //inicialize this->size com other.size
+        setCapacity(other._capacity);
+        
+        //inicialize this->_size com other._size
+        set_Size(other._size);
+
         //se this->data não for nulo, devolva a memória com delete
+        if(this->_data != NULL) delete [] _data;
+
         //crie nova memória para this->data do tamanho de other.capacity
+        int * _new_data = new int[other._capacity];
+        int qtd = min(other._size, other._capacity);
+        for (int i = 0; i < qtd; i++){
+            _new_data[i] = _data[i];
+        }
+        _data = _new_data;
+
         //copie os dados de other.data para this->data
+        for (int i = 0; i < qtd; i++){
+            _data[i] = other._data[i];
+        }
     }
 
     //aqui você ensina seu vector a ser criado a partir de outro vector
@@ -69,10 +88,14 @@ struct Vector{
         *this = other;
     }
     ~Vector(){
-        this->_data;
+        delete [] this->_data;
     }
     void add(int value){
         //se ainda couber, copia value para o novo valor
+        if(this->_size < this->_capacity){
+            this->_data[this->_size] = value;
+            this->_size++;
+        }
     }
 
     //esse é o toString do c++
@@ -104,7 +127,7 @@ int main(){
             ss >> value;
             v = Vector(value);
         } else if(cmd == "status"){
-            cout << "size:" << v.size << " capacity:" << v.capacity << "\n";
+            cout << "size:" << v._size << " capacity:" << v._capacity << "\n";
         } else if(cmd == "add"){
             while(ss >> value)
                 v.add(value);
