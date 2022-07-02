@@ -1,37 +1,80 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-
+#include <string>
+#include <Windows.h>
 using namespace std;
 
-bool completar(string Linha, int Indice, int Limite, int Proximidade){
-    if((int) Linha.size() == Indice) return false;
+struct Posi{
+    int l;
+    int c;
+};
 
-    if(Linha [Indice] != '.') return completar(Linha, Indice + 1, Limite, Proximidade);
+vector<Posi> get_vizinhos(Posi p){
+    return {{p.l, p.c - 1}, {p.l - 1, p.c}, {p.l, p.c + 1}, {p.l + 1, p.c}};
+}
 
-    for(int valor = 0; valor <= Limite; valor++){
-        if(adicionar(Linha, Indice, valor, Proximidade)) return true;
+void show(vector<string> &matriz){
+    for(string line : matriz){
+        cout << line << endl;
+    }
+    Sleep(200);
+    system("cls");
+}
+
+bool procurar(vector<string> &matriz, Posi atual, Posi dest){
+    if(atual.l == dest.l && atual.c == dest.c)  return true;
+
+    if(matriz[atual.l][atual.c] != '_') return false;
+
+    matriz[atual.l][atual.c] = '.';
+
+    show(matriz);
+
+    for(auto viz : get_vizinhos(atual)){
+        if(procurar(matriz, viz, dest)) return true;
     }
 
-    Linha[Indice] = '.';
-    cout << Linha;
-    cout << endl;
+    matriz[atual.l][atual.c] = '_';
+
+    show(matriz);
+
     return false;
 }
 
-bool adicionar(string& Linha, int Indice, int Valor, int Proximidade){
-    for(int i { Indice + 1}; i < Indice + 1 + Proximidade; i++){
-        if(i < (int) Linha.size() && Linha[i] == Valor + '0') return false;
-    }
-    return true;
-}
-
 int main(){
-    string Linha;
-    
-    int Limite{1}, Proximidade{0};
-    ifstream In("input.txt");
-    In >> Linha >> Proximidade;
+    ifstream arquivo("input.txt");
 
-    completar(Linha, 0, Limite, Proximidade);
+    int nl = 0, nc = 0;
+    arquivo >> nl >> nc;
+
+    vector<string> matriz(nl, "");
+    string temp;
+
+    getline(arquivo, temp);
+    Posi inicio, fim;
+
+    //carregando matriz
+    for(int i = 0; i < nl; i++){
+        getline(arquivo, matriz[i]);
+    }
+
+    
+    for(int l = 0; l < nl; l++){
+        for(int c = 0; c < nc; c++){
+            if(matriz[l][c] == 'I'){
+                matriz[l][c] = '_';
+                inicio = Posi {l, c};
+            }
+            if(matriz[l][c] == 'F'){
+                matriz[l][c] = '_';
+                fim = Posi {l, c};
+            }
+        }
+    }
+
+    procurar(matriz, inicio, fim);
+
+    for(string line : matriz) cout << line << endl;
 }
+    
