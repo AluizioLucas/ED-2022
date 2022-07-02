@@ -52,7 +52,7 @@ int main(){
     string temp;
 
     getline(arquivo, temp);
-    Posi inicio, fim;
+    Posi comeco, fim;
 
     //carregando matriz
     for(int i = 0; i < nl; i++){
@@ -64,7 +64,7 @@ int main(){
         for(int c = 0; c < nc; c++){
             if(matriz[l][c] == 'I'){
                 matriz[l][c] = '_';
-                inicio = Posi {l, c};
+                comeco = Posi {l, c};
             }
             if(matriz[l][c] == 'F'){
                 matriz[l][c] = '_';
@@ -73,7 +73,7 @@ int main(){
         }
     }
 
-    procurar(matriz, inicio, fim);
+    procurar(matriz, comeco, fim);
 
     for(string line : matriz) cout << line << endl;
 }
