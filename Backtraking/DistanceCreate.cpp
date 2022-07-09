@@ -11,7 +11,7 @@ bool pode_colocar(string Linha, int max, int indice, char value) {
     return true;
 }
 
-bool distancia_calc(string& Linha, int max, int indice){
+bool distancia_calc(string& Linha, int indice, int max){
 
     if((int)Linha.size() == indice) return true;
     if(Linha[indice] != '.') return distancia_calc(Linha, max, indice + 1);
@@ -38,5 +38,5 @@ int main() {
     int max = 0;
     arq >> Linha >> max;
 
-    distancia_calc(Linha, max, 0);
+    distancia_calc(Linha, 0, max);
 }
