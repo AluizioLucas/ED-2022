@@ -11,11 +11,11 @@ struct Node{
 };
 
 
-struct DList{
+struct BuildList{
     Node * head;
     Node * tail;
 
-    DList(){
+    BuildList(){
         head = new Node(0);
         tail = new Node(0);
         head->proximo = tail;
@@ -47,13 +47,11 @@ struct DList{
     }
 
     void pop_back(){
-        if(!this->empty())
-            this->byebye(tail->anteriror);
+        if(!this->empty()) this->byebye(tail->anteriror);
     }
 
     void pop_front(){
-        if(!this->empty())
-            this->byebye(tail->proximo);
+        if(!this->empty()) this->byebye(tail->proximo);
     }
 
     string show(){
@@ -68,13 +66,8 @@ struct DList{
 };
 
 int main(){
-    DList lista;
+    BuildList lista;
     lista.push_front(1);
-    lista.push_front(2);
-    lista.push_front(3);
-    lista.push_back(7);
-    lista.push_back(8);
     lista.push_back(9);
-
     cout << lista.show() << "\n";
 }
