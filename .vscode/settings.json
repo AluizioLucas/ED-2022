@@ -9,6 +9,11 @@
         "vector": "cpp",
         "*.tcc": "cpp",
         "iosfwd": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "xstring": "cpp",
+        "list": "cpp",
+        "xhash": "cpp",
+        "xutility": "cpp",
+        "stack": "cpp"
     }
 }

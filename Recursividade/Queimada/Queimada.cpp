@@ -29,17 +29,17 @@ void print(vector<string>& mapa){
 }
 
 int main(){
-    int n_l, n_c, l_fire_ignite, c_fire_ignite; 
+    int  numero_coluna, numero_linha, fogo_na_coluna, fogo_na_linha; 
 
-    cin >> n_l >> n_c >> l_fire_ignite >> c_fire_ignite;
+    cin >> numero_linha >> numero_coluna >> fogo_na_linha >> fogo_na_coluna;
 
-    vector<string> mapa(n_l);
+    vector<string> mapa(numero_linha);
 
-    for(int i = 0; i < n_l; i++){
+    for(int i = 0; i < numero_linha; i++){
         cin >> mapa[i];
     }
 
-    fogo_na_floresta(mapa, l_fire_ignite, c_fire_ignite);
+    fogo_na_floresta(mapa, fogo_na_linha, fogo_na_coluna);
     print(mapa);
 
 

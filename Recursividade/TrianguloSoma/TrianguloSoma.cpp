@@ -10,13 +10,13 @@ void print(vector<int> piramide) {
     cout << endl;
 }
 
-vector<int> soma_elementos(vector<int>& piramide, vector<int> out_somado = {}, int posi = 0 ){
-   if(out_somado.size() == piramide.size() - 1){
-       return out_somado;
+vector<int> soma_elementos(vector<int>& piramide, vector<int> somado = {}, int posi = 0 ){
+   if(somado.size() == piramide.size() - 1){
+       return somado;
    }
 
-   out_somado.push_back(piramide[posi] + piramide[posi + 1]);
-   return soma_elementos(piramide, out_somado, posi + 1);
+   somado.push_back(piramide[posi] + piramide[posi + 1]);
+   return soma_elementos(piramide, somado, posi + 1);
 
 }
 

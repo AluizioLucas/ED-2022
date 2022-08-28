@@ -5,7 +5,7 @@
 
 
 using namespace std;
-bool pode_colocar(string Linha, int max, int indice, char value) {
+bool alocar(string Linha, int max, int indice, char value) {
     for(int i = indice - max; i < indice + max + 1; i++ )
         if(Linha[i] == value) return false;
     return true;
@@ -17,7 +17,7 @@ bool distancia_calc(string& Linha, int indice, int max){
     if(Linha[indice] != '.') return distancia_calc(Linha, max, indice + 1);
 
     for(char value = '0'; value <= max + '0'; value++){
-        if(pode_colocar(Linha, max, indice, value)){
+        if(alocar(Linha, max, indice, value)){
             Linha[indice] = value;
             cout << Linha << "\n";
 

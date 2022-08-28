@@ -54,12 +54,10 @@ int main(){
     getline(arquivo, temp);
     Posi comeco, fim;
 
-    //carregando matriz
     for(int i = 0; i < nl; i++){
         getline(arquivo, matriz[i]);
     }
-
-    
+ 
     for(int l = 0; l < nl; l++){
         for(int c = 0; c < nc; c++){
             if(matriz[l][c] == 'I'){

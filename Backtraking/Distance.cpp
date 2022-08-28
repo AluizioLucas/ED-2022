@@ -41,8 +41,10 @@ bool preencher(string& linha, int index, int limite, int proximidade){
 int main() {
     string linha;
     ifstream arq("input.txt");
+
     int proximidade = 0;
     arq >> linha >> proximidade;
     int limite = 3;
+    
     preencher(linha, 0, proximidade, limite);
 }
